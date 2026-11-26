@@ -52,8 +52,3 @@ resource "google_service_account" "pipeline" {
   depends_on = [google_project_service.apis]
 }
 
-resource "google_project_iam_member" "oops" {
-  project = var.project_id
-  role    = "roles/editor"
-  member  = "serviceAccount:grc-collector@${var.project_id}.iam.gserviceaccount.com"
-}
