@@ -1,0 +1,9 @@
+=== Locked Bucket Retention Policy ===
+
+  null
+=== Attempted Delete Output ===
+Removing objects:
+  
+Removing gs://cgegcp-bsh-reports/worm-proof.txt...
+ERROR: Task 'gs://cgegcp-bsh-reports/worm-proof.txt' failed: GcsApiError('')
+
