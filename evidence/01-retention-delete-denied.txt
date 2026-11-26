@@ -1,0 +1,11 @@
+=== Locked Bucket Retention Policy ===
+retention_policy:
+  effectiveTime: '2026-11-26T07:38:44.878000+00:00'
+  isLocked: true
+  retentionPeriod: '86400'
+=== Attempted Delete Output ===
+Removing objects:
+  
+Removing gs://cgegcp-bsh-reports/worm-proof.txt...
+ERROR: Task 'gs://cgegcp-bsh-reports/worm-proof.txt' failed: GcsApiError('')
+
