@@ -1,0 +1,22 @@
+plan-and-check (06-enforcement)	Gate	﻿2026-11-27T06:05:55.9704696Z ##[group]Run conftest test --no-color -p policy stages/06-enforcement/plan.json
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9705340Z [36;1mconftest test --no-color -p policy stages/06-enforcement/plan.json[0m
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9739443Z shell: /usr/bin/bash -e {0}
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9739714Z env:
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9739944Z   CLOUDSDK_CORE_PROJECT: cgegcp-bsh
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9740243Z   CLOUDSDK_BILLING_QUOTA_PROJECT: cgegcp-bsh
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9740755Z   CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE: /home/runner/work/cgegcp/cgegcp/gha-creds-809f4c4f011926d7.json
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9741435Z   GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/cgegcp/cgegcp/gha-creds-809f4c4f011926d7.json
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9742035Z   GOOGLE_GHA_CREDS_PATH: /home/runner/work/cgegcp/cgegcp/gha-creds-809f4c4f011926d7.json
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9742499Z   CLOUDSDK_PROJECT: cgegcp-bsh
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9742756Z   GCLOUD_PROJECT: cgegcp-bsh
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9742996Z   GCP_PROJECT: cgegcp-bsh
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9743245Z   GOOGLE_CLOUD_PROJECT: cgegcp-bsh
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9743605Z   CLOUDSDK_METRICS_ENVIRONMENT: github-actions-setup-gcloud
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9743977Z   CLOUDSDK_METRICS_ENVIRONMENT_VERSION: 3.0.1
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:55.9744262Z ##[endgroup]
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:56.0055930Z FAIL - stages/06-enforcement/plan.json - main - CHK-IAM-02: google_service_account_key.nope creates a service account key. Workloads use attached identities; CI uses Workload Identity Federation.
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:56.0059030Z FAIL - stages/06-enforcement/plan.json - main - CHK-STG-01: google_storage_bucket.loose must set public_access_prevention = "enforced".
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:56.0061175Z FAIL - stages/06-enforcement/plan.json - main - CHK-STG-02: google_storage_bucket.loose must set uniform_bucket_level_access = true.
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:56.0062798Z 
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:56.0063341Z 6 tests, 3 passed, 0 warnings, 3 failures, 0 exceptions
+plan-and-check (06-enforcement)	Gate	2026-11-27T06:05:56.0090875Z ##[error]Process completed with exit code 1.
