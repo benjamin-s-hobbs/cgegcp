@@ -18,7 +18,7 @@ variable "state_bucket" {
 variable "mode" {
   description = "Escalation ladder rung. Raise it only through a reviewed pull request."
   type        = string
-  default     = "report_only"
+  default     = "approve"
   validation {
     condition     = contains(["report_only", "approve", "auto"], var.mode)
     error_message = "mode must be report_only, approve, or auto."
