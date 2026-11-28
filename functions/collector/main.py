@@ -48,17 +48,39 @@ def gather():
     proj_policy = _d(proj[0].iam_policy) if proj else {}
     keys = {a.name: _d(a.resource).get("data", {})
             for a in _assets(c, ["iam.googleapis.com/ServiceAccountKey"], R)}
-    return buckets, bucket_policies, proj_policy, keys
+
+    # Custom checks: Cloud Run services + IAM (search API) and enabled APIs
+    run_services = {a.name.split("/")[-1]
+                    for a in _assets(c, ["run.googleapis.com/Service"], R)}
+    run_policies = {}
+    for r in c.search_all_iam_policies(request={"scope": f"projects/{PROJECT}",
+                                                "asset_types": ["run.googleapis.com/Service"]}):
+        name = r.resource.split("/")[-1]
+        run_policies.setdefault(name, []).extend(_d(r.policy).get("bindings", []))
+
+    enabled_apis = set()
+    for a in _assets(c, ["serviceusage.googleapis.com/Service"], R):
+        data = _d(a.resource).get("data", {})
+        if data.get("state") == "ENABLED":
+            api_name = data.get("config", {}).get("name") or a.name.split("/")[-1]
+            enabled_apis.add(api_name)
+
+    return buckets, bucket_policies, proj_policy, keys, run_services, run_policies, enabled_apis
 
 
 def run_checks():
-    buckets, bucket_policies, proj_policy, keys = gather()
+    buckets, bucket_policies, proj_policy, keys, run_services, run_policies, enabled_apis = gather()
     project = f"//cloudresourcemanager.googleapis.com/projects/{PROJECT}"
     return (checks.chk_stg_01(buckets, bucket_policies)
             + checks.chk_stg_02(buckets)
             + checks.chk_iam_01(project, proj_policy.get("bindings", []))
             + checks.chk_iam_02(project, keys)
-            + checks.chk_log_01(project, proj_policy.get("auditConfigs", [])))
+            + checks.chk_log_01(project, proj_policy.get("auditConfigs", []))
+            + checks.chk_stg_03(buckets)
+            + checks.chk_stg_04(buckets)
+            + checks.chk_stg_05(buckets)
+            + checks.chk_iam_03(run_services, run_policies)
+            + checks.chk_api_01(project, enabled_apis))
 
 
 def doc_id(check_id, resource):
