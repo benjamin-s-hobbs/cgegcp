@@ -31,6 +31,36 @@
       "csf": ["PR.PS-04"],
       "sp800_53": ["AU-2", "AU-12"],
       "severity": "medium"
+    },
+    "CHK-STG-03": {
+      "title": "Public Access Prevention (enforced) is on for every bucket",
+      "csf": ["PR.AA-05", "PR.DS-01"],
+      "sp800_53": ["AC-3", "SC-7"],
+      "severity": "high"
+    },
+    "CHK-STG-04": {
+      "title": "Locked WORM retention policy (>= 86400s) is on for reports buckets",
+      "csf": ["PR.PS-04", "PR.DS-01"],
+      "sp800_53": ["AU-9"],
+      "severity": "high"
+    },
+    "CHK-STG-05": {
+      "title": "Object versioning is enabled on Terraform state buckets",
+      "csf": ["PR.DS-10", "PR.IR-01"],
+      "sp800_53": ["CP-9"],
+      "severity": "medium"
+    },
+    "CHK-IAM-03": {
+      "title": "No Cloud Run service allows unauthenticated public invocation",
+      "csf": ["PR.AA-05"],
+      "sp800_53": ["AC-3", "IA-2"],
+      "severity": "high"
+    },
+    "CHK-API-01": {
+      "title": "Only approved Google Cloud APIs are enabled in the project",
+      "csf": ["ID.AM-02", "PR.PS-01"],
+      "sp800_53": ["CM-7", "CM-8"],
+      "severity": "medium"
     }
   }
 }
